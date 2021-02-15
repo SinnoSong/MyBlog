@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\..\common.props" />
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>MyBlog.Application</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\MyBlog.Application.Caching\MyBlog.Application.Caching.csproj" />
+        <ProjectReference Include="..\MyBlog.Application.Contracts\MyBlog.Application.Contracts.csproj" />
+        <ProjectReference Include="..\MyBlog.Domain.Shared\MyBlog.Domain.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.Identity.Application" Version="4.2.1" />
+    </ItemGroup>
+</Project>
