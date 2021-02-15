@@ -6,7 +6,7 @@ namespace MyBlog.EntityFrameworkCore
 {
     public class MyBlogDbContext : AbpDbContext<MyBlogDbContext>
     {
-        [ConnectionStringName("MySql")]
+        [ConnectionStringName("Default")]
         public MyBlogDbContext(DbContextOptions<MyBlogDbContext> options) : base(options)
         {
         }
