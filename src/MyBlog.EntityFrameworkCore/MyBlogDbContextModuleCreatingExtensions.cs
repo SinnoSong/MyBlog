@@ -20,7 +20,7 @@ namespace MyBlog.EntityFrameworkCore
                 b.Property(x => x.Url).HasMaxLength(100).IsRequired();
                 b.Property(x => x.Html).HasColumnType("nvarchar").IsRequired();
                 b.Property(x => x.Markdown).HasColumnType("nvarchar").IsRequired();
-                b.Property(x => x.CategotyId).HasColumnType("int");
+                b.Property(x => x.CategoryId).HasColumnType("int");
                 b.Property(x => x.CreationTime).HasColumnType("datetime");
             });
             builder.Entity<Category>(b =>

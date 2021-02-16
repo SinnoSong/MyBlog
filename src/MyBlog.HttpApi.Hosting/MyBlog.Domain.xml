@@ -64,7 +64,7 @@
             Markdown
             </summary>
         </member>
-        <member name="P:MyBlog.Domain.Blog.Post.CategotyId">
+        <member name="P:MyBlog.Domain.Blog.Post.CategoryId">
             <summary>
             分类ID
             </summary>
@@ -123,6 +123,40 @@
             <summary>
             根据key获取的链接字符串
             </summary>
+        </member>
+        <member name="T:MyBlog.Domain.Repositories.ICategoryRepository">
+            <summary>
+            ICategoryRepository
+            </summary>
+        </member>
+        <member name="T:MyBlog.Domain.Repositories.IFriendLinkRepository">
+            <summary>
+            IFriendLinkRepository
+            </summary>
+        </member>
+        <member name="T:MyBlog.Domain.Repositories.IPostTagRepository">
+            <summary>
+            IPostTagRepository
+            </summary>
+        </member>
+        <member name="M:MyBlog.Domain.Repositories.IPostTagRepository.BulkInsertAsync(System.Collections.Generic.IEnumerable{MyBlog.Domain.Blog.PostTag})">
+            <summary>
+            批量插入
+            </summary>
+            <param name="postTags"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MyBlog.Domain.Repositories.ITagRepository">
+            <summary>
+            ITagRepositry
+            </summary>
+        </member>
+        <member name="M:MyBlog.Domain.Repositories.ITagRepository.BulkInsertAsync(System.Collections.Generic.IEnumerable{MyBlog.Domain.Blog.Tag})">
+            <summary>
+            批量插入
+            </summary>
+            <param name="tags"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

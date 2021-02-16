@@ -1,16 +1,16 @@
 ﻿using System;
-using Volo.Abp.Domain.Entities;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace MyBlog.Domain.Blog
+namespace MyBlog.Application.Contracts.Blog
 {
     /// <summary>
-    /// 发表文章表
+    /// 文章传输对象
     /// </summary>
-    public class Post : Entity<int>
+    public class PostDto
     {
-        /// <summary>
-        /// 标题
-        /// </summary>
         public string Title { get; set; }
 
         /// <summary>

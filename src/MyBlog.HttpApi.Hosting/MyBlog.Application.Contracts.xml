@@ -4,5 +4,40 @@
         <name>MyBlog.Application.Contracts</name>
     </assembly>
     <members>
+        <member name="T:MyBlog.Application.Contracts.Blog.PostDto">
+            <summary>
+            文章传输对象
+            </summary>
+        </member>
+        <member name="P:MyBlog.Application.Contracts.Blog.PostDto.Author">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="P:MyBlog.Application.Contracts.Blog.PostDto.Url">
+            <summary>
+            链接
+            </summary>
+        </member>
+        <member name="P:MyBlog.Application.Contracts.Blog.PostDto.Html">
+            <summary>
+            Html
+            </summary>
+        </member>
+        <member name="P:MyBlog.Application.Contracts.Blog.PostDto.Markdown">
+            <summary>
+            Markdown
+            </summary>
+        </member>
+        <member name="P:MyBlog.Application.Contracts.Blog.PostDto.CategoryId">
+            <summary>
+            分类ID
+            </summary>
+        </member>
+        <member name="P:MyBlog.Application.Contracts.Blog.PostDto.CreationTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
     </members>
 </doc>

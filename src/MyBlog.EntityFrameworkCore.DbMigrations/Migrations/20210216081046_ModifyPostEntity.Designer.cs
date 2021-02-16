@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyBlog.EntityFrameworkCore.DbMigrations;
 using Volo.Abp.EntityFrameworkCore;
@@ -10,9 +11,10 @@ using Volo.Abp.EntityFrameworkCore;
 namespace MyBlog.EntityFrameworkCore.DbMigrations.Migrations
 {
     [DbContext(typeof(MyBlogMigrationsDbContext))]
-    partial class MyBlogMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210216081046_ModifyPostEntity")]
+    partial class ModifyPostEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
