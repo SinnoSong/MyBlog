@@ -4,6 +4,7 @@ using Microsoft.OpenApi.Models;
 using MyBlog.Domain.Configurations;
 using MyBlog.Domain.Shared;
 using MyBolg.Swagger.Filters;
+using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,19 @@ namespace MyBolg.Swagger
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "MyBlog.Domain.xml"));
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "MyBlog.Application.Contracts.xml"));
                 options.DocumentFilter<SwaggerDocumentFilter>();
+                // 开启JWT
+                var security = new OpenApiSecurityScheme
+                {
+                    Description = "JWT模式授权，请输入Bearer{Token}进行身份验证",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                };
+                options.AddSecurityDefinition("JWT", security);
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement { { security, new List<string>() } });
+                options.OperationFilter<AddResponseHeadersFilter>();
+                options.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
+                options.OperationFilter<SecurityRequirementsOperationFilter>();
             });
         }
 
