@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyBlog.Application.Blog;
 using MyBlog.Application.Contracts.Blog;
+using MyBolg.ToolKits.Base;
 using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc;
 
@@ -23,7 +24,7 @@ namespace MyBlog.HttpApi.Controllers
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<bool> InsertPostAsync([FromBody] PostDto dto)
+        public async Task<ServiceResult<string>> InsertPostAsync([FromBody] PostDto dto)
         {
             return await _blogService.InsertPostAsync(dto);
         }
@@ -34,7 +35,7 @@ namespace MyBlog.HttpApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<PostDto> GetPostAsync([FromQuery] int id)
+        public async Task<ServiceResult<PostDto>> GetPostAsync([FromQuery] int id)
         {
             return await _blogService.GetPostAsync(id);
         }
@@ -45,7 +46,7 @@ namespace MyBlog.HttpApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
-        public async Task<bool> DeletePostAsync([FromQuery] int id)
+        public async Task<ServiceResult> DeletePostAsync([FromQuery] int id)
         {
             return await _blogService.DeletePostAsync(id);
         }
@@ -57,7 +58,7 @@ namespace MyBlog.HttpApi.Controllers
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPut]
-        public async Task<bool> UpdatePostAsync([FromQuery] int id, [FromBody] PostDto dto)
+        public async Task<ServiceResult<string>> UpdatePostAsync([FromQuery] int id, [FromBody] PostDto dto)
         {
             return await _blogService.UpdatePostAsync(id, dto);
         }
