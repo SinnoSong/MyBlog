@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using MyBlog.Application.Contracts.Blog;
+﻿using MyBlog.Application.Contracts.Blog;
+using System.Threading.Tasks;
 
 namespace MyBlog.Application.Blog
 {
