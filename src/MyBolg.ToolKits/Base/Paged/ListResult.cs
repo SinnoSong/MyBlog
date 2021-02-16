@@ -8,7 +8,7 @@ namespace MyBolg.ToolKits.Base.Paged
 
         public IReadOnlyList<T> Item
         {
-            get => item ?? (item = new List<T>());
+            get => item ??= new List<T>();
             set => item = value;
         }
 
