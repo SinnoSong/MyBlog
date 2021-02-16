@@ -15,7 +15,7 @@ namespace MyBolg.Swagger
         /// <summary>
         /// 当前Api版本，从appsettings.json获取
         /// </summary>
-        private static readonly string version = AppSettings.ApiVersion;
+        private static readonly string version = $"v{AppSettings.ApiVersion}";
 
         private static readonly string description = "接口分组描述";
 
