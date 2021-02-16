@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using MyBlog.Domain.Configurations;
 using MyBlog.Domain.Shared;
+using MyBolg.Swagger.Filters;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,7 @@ namespace MyBolg.Swagger
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "MyBlog.HttpApi.xml"));
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "MyBlog.Domain.xml"));
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "MyBlog.Application.Contracts.xml"));
+                options.DocumentFilter<SwaggerDocumentFilter>();
             });
         }
 
