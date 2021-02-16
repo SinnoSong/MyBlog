@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyBlog.Application.HelloWorld;
+using MyBlog.Domain.Shared;
 using Volo.Abp.AspNetCore.Mvc;
 
 namespace MyBlog.HttpApi.Controllers
 {
-    [ApiController]
+    [ApiController, ApiExplorerSettings(GroupName = Grouping.GroupName_v3)]
     [Route("[controller]")]
     public class HelloWorldController : AbpController
     {

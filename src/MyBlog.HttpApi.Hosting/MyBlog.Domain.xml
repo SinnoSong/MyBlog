@@ -124,6 +124,11 @@
             根据key获取的链接字符串
             </summary>
         </member>
+        <member name="P:MyBlog.Domain.Configurations.AppSettings.ApiVersion">
+            <summary>
+            ApiVersion
+            </summary>
+        </member>
         <member name="T:MyBlog.Domain.Repositories.ICategoryRepository">
             <summary>
             ICategoryRepository

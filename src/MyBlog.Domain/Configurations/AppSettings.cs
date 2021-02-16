@@ -30,5 +30,10 @@ namespace MyBlog.Domain.Configurations
         /// 根据key获取的链接字符串
         /// </summary>
         public static string ConnectionStrings => _config.GetConnectionString(EnableDb);
+
+        /// <summary>
+        /// ApiVersion
+        /// </summary>
+        public static string ApiVersion => _config["ApiVersion"];
     }
 }

@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyBlog.Application.Blog;
 using MyBlog.Application.Contracts.Blog;
+using MyBlog.Domain.Shared;
 using MyBolg.ToolKits.Base;
 using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc;
 
 namespace MyBlog.HttpApi.Controllers
 {
-    [ApiController]
+    [ApiController, ApiExplorerSettings(GroupName = Grouping.GroupName_v1)]
     [Route("[controller]")]
     public class BlogController : AbpController
     {
