@@ -4,6 +4,19 @@
         <name>MyBlog.HttpApi</name>
     </assembly>
     <members>
+        <member name="M:MyBlog.HttpApi.Controllers.AuthController.GetLoginAddressAsync">
+            <summary>
+            获取登录地址(Github)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyBlog.HttpApi.Controllers.AuthController.GetAccessTokenAsync(System.String)">
+            <summary>
+            获取AccessToken
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
         <member name="M:MyBlog.HttpApi.Controllers.BlogController.InsertPostAsync(MyBlog.Application.Contracts.Blog.PostDto)">
             <summary>
             添加博客

@@ -137,7 +137,7 @@ namespace MyBolg.Swagger
             new SwaggerApiInfo
             {
                 UrlPrefix = Grouping.GroupName_v4,
-                Name = "=JWT授权接口",
+                Name = "JWT授权接口",
                 OpenApiInfo = new OpenApiInfo
                 {
                     Version =version,

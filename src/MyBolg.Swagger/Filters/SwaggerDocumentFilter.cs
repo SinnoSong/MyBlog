@@ -1,10 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyBolg.Swagger.Filters
 {
@@ -28,6 +25,12 @@ namespace MyBolg.Swagger.Filters
                     Name =  "HelloWorld",
                     Description = "通用公共接口",
                     ExternalDocs = new OpenApiExternalDocs{Description = "公共接口"}
+                },
+                new OpenApiTag
+                {
+                    Name = "Auth",
+                    Description = "JWT模式认证授权",
+                    ExternalDocs = new OpenApiExternalDocs{Description="Json Web Token"}
                 }
             };
             swaggerDoc.Tags = tags.OrderBy(x => x.Name).ToList();

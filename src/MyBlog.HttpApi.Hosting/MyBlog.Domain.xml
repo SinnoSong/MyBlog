@@ -129,6 +129,56 @@
             ApiVersion
             </summary>
         </member>
+        <member name="T:MyBlog.Domain.Configurations.AppSettings.GitHub">
+            <summary>
+            GitHub
+            </summary>
+        </member>
+        <member name="T:MyBlog.Domain.Configurations.AppSettings.JWT">
+            <summary>
+            JWT
+            </summary>
+        </member>
+        <member name="F:MyBlog.Domain.Configurations.GitHubConfig.API_Authorize">
+            <summary>
+            GET请求，跳转Github登录页面，获取用户授权，得到code
+            </summary>
+        </member>
+        <member name="F:MyBlog.Domain.Configurations.GitHubConfig.API_AccessToken">
+            <summary>
+            POST请求，根据code得到access_token
+            </summary>
+        </member>
+        <member name="F:MyBlog.Domain.Configurations.GitHubConfig.API_User">
+            <summary>
+            GET请求，根据access_token得到用户信息
+            </summary>
+        </member>
+        <member name="F:MyBlog.Domain.Configurations.GitHubConfig.UserId">
+            <summary>
+            UserId
+            </summary>
+        </member>
+        <member name="F:MyBlog.Domain.Configurations.GitHubConfig.Client_ID">
+            <summary>
+            Client_ID
+            </summary>
+        </member>
+        <member name="F:MyBlog.Domain.Configurations.GitHubConfig.Client_Secret">
+            <summary>
+            Client_Secret
+            </summary>
+        </member>
+        <member name="F:MyBlog.Domain.Configurations.GitHubConfig.Redirect_Uri">
+            <summary>
+            Redirect_Uri
+            </summary>
+        </member>
+        <member name="F:MyBlog.Domain.Configurations.GitHubConfig.ApplicationName">
+            <summary>
+            ApplicationName
+            </summary>
+        </member>
         <member name="T:MyBlog.Domain.Repositories.ICategoryRepository">
             <summary>
             ICategoryRepository
