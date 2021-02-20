@@ -58,5 +58,18 @@ namespace MyBlog.Domain.Configurations
             public static string SecurityKey => _config["JWT:SecurityKey"];
             public static int Expires => Convert.ToInt32(_config["JWT:Expires"]);
         }
+
+        public static class Caching
+        {
+            /// <summary>
+            /// RedisConnectionString
+            /// </summary>
+            public static string RedisConnectionString => _config["Caching:RedisConnectionString"];
+
+            /// <summary>
+            /// 是否开启
+            /// </summary>
+            public static bool IsOpen => Convert.ToBoolean(_config["Caching:IsOpen"]);
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿using MyBlog.Domain;
+﻿using Microsoft.Extensions.DependencyInjection;
+using MyBlog.Domain;
+using MyBlog.Domain.Configurations;
 using Volo.Abp.Caching;
 using Volo.Abp.Modularity;
 
@@ -12,7 +14,10 @@ namespace MyBlog.Application.Caching
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            base.ConfigureServices(context);
+            context.Services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = AppSettings.Caching.RedisConnectionString;
+            });
         }
     }
 }

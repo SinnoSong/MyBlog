@@ -139,6 +139,16 @@
             JWT
             </summary>
         </member>
+        <member name="P:MyBlog.Domain.Configurations.AppSettings.Caching.RedisConnectionString">
+            <summary>
+            RedisConnectionString
+            </summary>
+        </member>
+        <member name="P:MyBlog.Domain.Configurations.AppSettings.Caching.IsOpen">
+            <summary>
+            是否开启
+            </summary>
+        </member>
         <member name="F:MyBlog.Domain.Configurations.GitHubConfig.API_Authorize">
             <summary>
             GET请求，跳转Github登录页面，获取用户授权，得到code
