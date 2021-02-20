@@ -11,7 +11,7 @@ namespace MyBolg.ToolKits.Extensions
         public static IHostBuilder UseLog4Net(this IHostBuilder hostBuilder)
         {
             var log4NetRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
-            XmlConfigurator.Configure(log4NetRepository, new FileInfo("Resources/log4net.config"));
+            XmlConfigurator.Configure(log4NetRepository, new FileInfo("log4net.config"));
             return hostBuilder;
         }
     }

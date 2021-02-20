@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
@@ -12,6 +13,8 @@ using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
+using System.Linq;
+using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 
 namespace MyBlog.HttpApi.Hosting
 {
@@ -27,6 +30,13 @@ namespace MyBlog.HttpApi.Hosting
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             base.ConfigureServices(context);
+            Configure<MvcOptions>(options =>
+            {
+                var filterMetadate = options.Filters.FirstOrDefault(x => x is ServiceFilterAttribute attribute && attribute.ServiceType.Equals(typeof(AbpExceptionFilter)));
+
+                // 移除AbpExceptionFilter
+                options.Filters.Remove(filterMetadate);
+            });
             // 身份验证
             context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

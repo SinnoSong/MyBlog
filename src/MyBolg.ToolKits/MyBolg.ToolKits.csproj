@@ -15,4 +15,8 @@
     <ItemGroup>
       <ProjectReference Include="..\MyBlog.Domain\MyBlog.Domain.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Helper\" />
+    </ItemGroup>
 </Project>
