@@ -1,4 +1,5 @@
-﻿using MyBlog.Domain.Configurations;
+﻿using System.Net;
+using MyBlog.Domain.Configurations;
 using MyBolg.ToolKits.Base;
 using MyBolg.ToolKits.GitHub;
 using System;
@@ -6,6 +7,10 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using MyBolg.ToolKits.Extensions;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
 
 namespace MyBlog.Application.Authorize.Impl
 {
@@ -18,9 +23,65 @@ namespace MyBlog.Application.Authorize.Impl
             _httpClient = httpClient;
         }
 
-        public Task<ServiceResult<string>> GenerateTokenAsync(string access_token)
+        /// <summary>
+        /// 登录成功，生成token
+        /// </summary>
+        /// <param name="access_token"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult<string>> GenerateTokenAsync(string access_token)
         {
-            throw new NotImplementedException();
+            var result = new ServiceResult<string>();
+            if (string.IsNullOrEmpty(access_token))
+            {
+                result.IsFailed("access_token为空");
+                return result;
+            }
+
+            var url = $"{GitHubConfig.API_User}";
+            using var client = _httpClient.CreateClient();
+            client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.14 Safari/537.36 Edg/83.0.478.13");
+            client.DefaultRequestHeaders.Add("Authorization", $"token {access_token}");
+            var httpResponse = await client.GetAsync(url);
+            if (httpResponse.StatusCode != HttpStatusCode.OK)
+            {
+                result.IsFailed("access_token不正确");
+                return result;
+            }
+            var content = await httpResponse.Content.ReadAsStringAsync();
+
+            var user = content.FromJson<UserResponse>();
+            if (user.IsNull())
+            {
+                result.IsFailed("为获取到用户数据");
+                return result;
+            }
+
+            if (user.Id != GitHubConfig.UserId)
+            {
+                result.IsFailed("当前账号未授权");
+                return result;
+            }
+            var claims = new[] {
+                    new Claim(ClaimTypes.Name, user.Name),
+                    new Claim(ClaimTypes.Email, user.Email),
+                    new Claim(JwtRegisteredClaimNames.Exp, $"{new DateTimeOffset(DateTime.Now.AddMinutes(AppSettings.JWT.Expires)).ToUnixTimeSeconds()}"),
+                    new Claim(JwtRegisteredClaimNames.Nbf, $"{new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds()}")
+                };
+            var key = new SymmetricSecurityKey(AppSettings.JWT.SecurityKey.SerializeUtf8());
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var securityToken = new JwtSecurityToken(
+                issuer: AppSettings.JWT.Domain,
+                audience: AppSettings.JWT.Domain,
+                claims: claims,
+                expires: DateTime.Now.AddMinutes(AppSettings.JWT.Expires),
+                signingCredentials: creds
+                );
+
+            var token = new JwtSecurityTokenHandler().WriteToken(securityToken);
+
+            result.IsSuccess(token);
+            return await Task.FromResult(result);
         }
 
         /// <summary>

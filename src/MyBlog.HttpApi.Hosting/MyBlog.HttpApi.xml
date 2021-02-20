@@ -17,6 +17,13 @@
             <param name="code"></param>
             <returns></returns>
         </member>
+        <member name="M:MyBlog.HttpApi.Controllers.AuthController.GenerateTokenAsync(System.String)">
+            <summary>
+            登录成功，生成Token
+            </summary>
+            <param name="access_token"></param>
+            <returns></returns>
+        </member>
         <member name="M:MyBlog.HttpApi.Controllers.BlogController.InsertPostAsync(MyBlog.Application.Contracts.Blog.PostDto)">
             <summary>
             添加博客

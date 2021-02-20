@@ -56,15 +56,15 @@ namespace MyBlog.HttpApi.Hosting
             {
                 app.UseDeveloperExceptionPage();  // 生成开发者异常页面
             }
+            // 身份认证
+            app.UseAuthentication();
             app.UseRouting(); // 添加路由中间件
+            // 认证授权
+            app.UseAuthorization();
             app.UseEndpoints(endpotions =>
             {
                 endpotions.MapControllers();
             });
-            // 身份认证
-            app.UseAuthentication();
-            // 认证授权
-            app.UseAuthorization();
         }
     }
 }
