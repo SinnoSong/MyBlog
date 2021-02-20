@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using MyBlog.Domain.Configurations;
 using MyBlog.EntityFrameworkCore;
+using MyBlog.HttpApi.Hosting.Middleware;
 using MyBolg.Swagger;
 using System;
 using Volo.Abp;
@@ -56,9 +57,12 @@ namespace MyBlog.HttpApi.Hosting
             {
                 app.UseDeveloperExceptionPage();  // 生成开发者异常页面
             }
+            app.UseRouting(); // 添加路由中间件
+            // 异常处理中间件
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
+
             // 身份认证
             app.UseAuthentication();
-            app.UseRouting(); // 添加路由中间件
             // 认证授权
             app.UseAuthorization();
             app.UseEndpoints(endpotions =>
