@@ -44,6 +44,9 @@ namespace MyBolg.BackgroundJobs
                     })
                 }
             }); //显示界面并配置用户
+
+            var service = context.ServiceProvider;
+            service.UseHangfireTest();
         }
     }
 }
