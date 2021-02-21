@@ -199,6 +199,26 @@
             ApplicationName
             </summary>
         </member>
+        <member name="P:MyBlog.Domain.HotNews.HotNews.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:MyBlog.Domain.HotNews.HotNews.Url">
+            <summary>
+            链接
+            </summary>
+        </member>
+        <member name="P:MyBlog.Domain.HotNews.HotNews.SourceId">
+            <summary>
+            SourceId
+            </summary>
+        </member>
+        <member name="P:MyBlog.Domain.HotNews.HotNews.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
         <member name="T:MyBlog.Domain.Repositories.ICategoryRepository">
             <summary>
             ICategoryRepository

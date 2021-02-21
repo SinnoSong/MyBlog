@@ -9,6 +9,7 @@
             public const string Tags = "Tags";
             public const string PostTags = "PostTags";
             public const string FriendLinks = "FriendLinks";
+            public const string HotNews = "HotNews";
         }
     }
 }

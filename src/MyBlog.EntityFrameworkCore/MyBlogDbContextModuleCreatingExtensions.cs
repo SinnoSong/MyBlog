@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyBlog.Domain.Blog;
+using MyBlog.Domain.HotNews;
 using MyBlog.Domain.Shared;
 using Volo.Abp;
 using static MyBlog.Domain.Shared.MyBlogDbConsts;
@@ -52,6 +53,16 @@ namespace MyBlog.EntityFrameworkCore
                 b.HasKey(x => x.Id);
                 b.Property(x => x.Title).HasMaxLength(20).IsRequired();
                 b.Property(x => x.LinkUrl).HasMaxLength(100).IsRequired();
+            });
+            builder.Entity<HotNews>(b =>
+            {
+                b.ToTable(MyBlogConsts.DbTablePrefix + DbTableName.HotNews);
+                b.HasKey(x => x.Id);
+                b.Property(x => x.Id).ValueGeneratedOnAdd();
+                b.Property(x => x.Title).HasMaxLength(200).IsRequired();
+                b.Property(x => x.Url).HasMaxLength(250).IsRequired();
+                b.Property(x => x.SourceId).HasColumnType("int").IsRequired();
+                b.Property(x => x.CreateTime).HasColumnType("datetime").IsRequired();
             });
         }
     }
