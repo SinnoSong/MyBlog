@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using MyBlog.Domain.Configurations;
 using MyBlog.EntityFrameworkCore;
+using MyBlog.HttpApi.Hosting.Filters;
 using MyBlog.HttpApi.Hosting.Middleware;
 using MyBolg.BackgroundJobs;
 using MyBolg.Swagger;
@@ -38,7 +40,19 @@ namespace MyBlog.HttpApi.Hosting
 
                 // 移除AbpExceptionFilter
                 options.Filters.Remove(filterMetadate);
+                // 添加自己实体的MyBlogExceptionFilter
+                options.Filters.Add(typeof(MyBlogExceptionFilter));
             });
+
+            //路由配置
+            context.Services.AddRouting(options =>
+            {
+                // 设置URL为小写
+                options.LowercaseUrls = true;
+                // 在生成的URL后面添加斜杠
+                options.AppendTrailingSlash = true;
+            });
+
             // 身份验证
             context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -69,7 +83,14 @@ namespace MyBlog.HttpApi.Hosting
             {
                 app.UseDeveloperExceptionPage();  // 生成开发者异常页面
             }
+            app.UseHsts(); // 使用HSTS中间件添加严格传输安全头
+            // 转发将表头代理到当前请求，配置Nginx使用，获取用户真是IP
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
             app.UseRouting(); // 添加路由中间件
+            app.UseCors(p => p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());// 添加跨域
             // 异常处理中间件
             app.UseMiddleware<ExceptionHandlerMiddleware>();
 
@@ -77,6 +98,8 @@ namespace MyBlog.HttpApi.Hosting
             app.UseAuthentication();
             // 认证授权
             app.UseAuthorization();
+
+            app.UseHttpsRedirection(); // HTTP => HTTPS
             app.UseEndpoints(endpotions =>
             {
                 endpotions.MapControllers();
