@@ -7,15 +7,15 @@ using Microsoft.IdentityModel.Tokens;
 using MyBlog.Domain.Configurations;
 using MyBlog.EntityFrameworkCore;
 using MyBlog.HttpApi.Hosting.Middleware;
+using MyBolg.BackgroundJobs;
 using MyBolg.Swagger;
 using System;
+using System.Linq;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
+using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
-using System.Linq;
-using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
-using MyBolg.BackgroundJobs;
 
 namespace MyBlog.HttpApi.Hosting
 {

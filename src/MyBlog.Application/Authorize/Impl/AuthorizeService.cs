@@ -1,17 +1,17 @@
-﻿using System.Net;
+﻿using Microsoft.IdentityModel.Tokens;
+using MyBlog.Application.Caching.Authorize;
 using MyBlog.Domain.Configurations;
 using MyBolg.ToolKits.Base;
+using MyBolg.ToolKits.Extensions;
 using MyBolg.ToolKits.GitHub;
 using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using MyBolg.ToolKits.Extensions;
 using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.IdentityModel.Tokens;
-using MyBlog.Application.Caching.Authorize;
+using System.Threading.Tasks;
 
 namespace MyBlog.Application.Authorize.Impl
 {

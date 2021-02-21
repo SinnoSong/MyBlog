@@ -30,16 +30,7 @@ namespace MyBlog.Application.Blog.Impl
             {
                 result.IsFailed("文章不存在");
             }
-            var dto = new PostDto
-            {
-                Title = post.Title,
-                Author = post.Author,
-                Url = post.Url,
-                Html = post.Html,
-                Markdown = post.Markdown,
-                CategoryId = post.CategoryId,
-                CreationTime = post.CreationTime
-            };
+            var dto = ObjectMapper.Map<Post, PostDto>(post);
             result.IsSuccess(dto);
             return result;
         }
@@ -47,16 +38,7 @@ namespace MyBlog.Application.Blog.Impl
         public async Task<ServiceResult<string>> InsertPostAsync(PostDto dto)
         {
             var result = new ServiceResult<string>();
-            var entity = new Post
-            {
-                Title = dto.Title,
-                Author = dto.Author,
-                Url = dto.Url,
-                Html = dto.Html,
-                Markdown = dto.Markdown,
-                CategoryId = dto.CategoryId,
-                CreationTime = dto.CreationTime
-            };
+            var entity = ObjectMapper.Map<PostDto, Post>(dto);
             var post = await _postRepository.InsertAsync(entity);
             if (post == null)
             {
@@ -76,13 +58,7 @@ namespace MyBlog.Application.Blog.Impl
                 result.IsFailed("文章不存在");
                 return result;
             }
-            post.Title = dto.Title;
-            post.Author = dto.Author;
-            post.Url = dto.Url;
-            post.Html = dto.Html;
-            post.Markdown = dto.Markdown;
-            post.CategoryId = dto.CategoryId;
-            post.CreationTime = dto.CreationTime;
+            ObjectMapper.Map(dto, post);
             await _postRepository.UpdateAsync(post);
             result.IsSuccess("更新成功");
             return result;

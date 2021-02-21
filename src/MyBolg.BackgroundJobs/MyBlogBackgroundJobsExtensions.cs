@@ -1,7 +1,7 @@
-﻿using MyBolg.BackgroundJobs.Jobs.Hangfire;
-using System;
+﻿using Hangfire;
 using Microsoft.Extensions.DependencyInjection;
-using Hangfire;
+using MyBolg.BackgroundJobs.Jobs.Hangfire;
+using System;
 
 namespace MyBolg.BackgroundJobs
 {
