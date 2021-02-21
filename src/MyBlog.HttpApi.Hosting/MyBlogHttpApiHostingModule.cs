@@ -15,6 +15,7 @@ using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
 using System.Linq;
 using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
+using MyBolg.BackgroundJobs;
 
 namespace MyBlog.HttpApi.Hosting
 {
@@ -23,7 +24,8 @@ namespace MyBlog.HttpApi.Hosting
         typeof(AbpAutofacModule),
         typeof(MyBlogHttpApiModule),
         typeof(MyBlogSwaggerModule),
-        typeof(MyBlogFrameworkCoreModule)
+        typeof(MyBlogFrameworkCoreModule),
+        typeof(MyBlogBackgroundJobsModule)
     )]
     public class MyBlogHttpApiHostingModule : AbpModule
     {

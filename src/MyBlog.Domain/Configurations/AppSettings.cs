@@ -59,6 +59,9 @@ namespace MyBlog.Domain.Configurations
             public static int Expires => Convert.ToInt32(_config["JWT:Expires"]);
         }
 
+        /// <summary>
+        /// Caching
+        /// </summary>
         public static class Caching
         {
             /// <summary>
@@ -70,6 +73,15 @@ namespace MyBlog.Domain.Configurations
             /// 是否开启
             /// </summary>
             public static bool IsOpen => Convert.ToBoolean(_config["Caching:IsOpen"]);
+        }
+
+        /// <summary>
+        /// Hangfire
+        /// </summary>
+        public static class Hangfire
+        {
+            public static string Login => _config["Hangfire:Login"];
+            public static string Password => _config["Hangfire:Password"];
         }
     }
 }
