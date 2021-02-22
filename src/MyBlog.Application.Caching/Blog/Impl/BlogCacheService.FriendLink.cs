@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyBlog.Application.Caching.Blog.Impl
 {
-    public partial class BlogCacheService : IBlogCacheService
+    public partial class BlogCacheService
     {
     }
 }

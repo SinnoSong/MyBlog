@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MyBlog.Application.Blog;
 using MyBlog.Application.Contracts.Blog;
-using MyBlog.Blog;
 using MyBlog.Domain.Shared;
 using MyBolg.ToolKits.Base;
 using System.Threading.Tasks;
@@ -21,10 +20,25 @@ namespace MyBlog.HttpApi.Controllers
             _blogService = blogService;
         }
 
+        /// <summary>
+        /// 分页查询文章
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         [HttpGet, Route("posts")]
         public async Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostAsync([FromQuery] PaginInput input)
         {
             return await _blogService.QueryPostAsync(input);
+        }
+        /// <summary>
+        /// 根据Url查询文章详情
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        [HttpGet, Route("post")]
+        public async Task<ServiceResult<PostDetailDto>> GetPostDetailAsync(string url)
+        {
+            return await _blogService.GetPostDetailAsync(url);
         }
     }
 }

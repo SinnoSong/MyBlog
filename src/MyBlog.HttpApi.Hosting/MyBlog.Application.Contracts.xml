@@ -4,6 +4,11 @@
         <name>MyBlog.Application.Contracts</name>
     </assembly>
     <members>
+        <member name="T:MyBlog.Application.Contracts.Blog.PostDetailDto">
+            <summary>
+            文章详情
+            </summary>
+        </member>
         <member name="T:MyBlog.Application.Contracts.Blog.PostDto">
             <summary>
             文章传输对象
