@@ -1,7 +1,8 @@
 ﻿using Hangfire;
 using Microsoft.Extensions.DependencyInjection;
 using MyBolg.BackgroundJobs.Jobs.Hangfire;
-using MyBolg.BackgroundJobs.Jobs.HotNews;
+
+//using MyBolg.BackgroundJobs.Jobs.HotNews;
 using System;
 
 namespace MyBolg.BackgroundJobs
@@ -19,11 +20,11 @@ namespace MyBolg.BackgroundJobs
         /// 每日热点数据抓取
         /// </summary>
         /// <param name="service"></param>
-        public static void UseHotNewsJob(this IServiceProvider service)
-        {
-            var job = service.GetService<HotNewsJob>();
+        //public static void UseHotNewsJob(this IServiceProvider service)
+        //{
+        //    var job = service.GetService<HotNewsJob>();
 
-            RecurringJob.AddOrUpdate("每日热点数据抓取", () => job.ExecuteAsync(), CronType.Hour(1, 2));
-        }
+        //    RecurringJob.AddOrUpdate("每日热点数据抓取", () => job.ExecuteAsync(), CronType.Hour(1, 2));
+        //}
     }
 }

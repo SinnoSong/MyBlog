@@ -49,5 +49,10 @@
             来源
             </summary>
         </member>
+        <member name="T:MyBlog.PaginInput">
+            <summary>
+            分页输入参数
+            </summary>
+        </member>
     </members>
 </doc>

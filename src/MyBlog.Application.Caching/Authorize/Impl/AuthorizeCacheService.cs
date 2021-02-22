@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyBlog.Application.Caching.Authorize.Impl
 {
-    public class AuthorizeCacheService : MyBlogApplicationCachingServiceBase, IAuthorizeCacheService
+    public class AuthorizeCacheService : CachingServiceBase, IAuthorizeCacheService
     {
         private const string KEY_GetLoginAddress = "Authorize:GetLoginAddress";
         private const string KEY_GetAccessToken = "Authorize:GetAccessToken-{0}";

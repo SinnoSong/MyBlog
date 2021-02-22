@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyBlog.Application.Blog.Impl
 {
-    public partial class BlogService : IBlogService
+    public partial class BlogService
     {
     }
 }

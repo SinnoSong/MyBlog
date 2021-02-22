@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using MyBlog.Blog;
+
+using MyBolg.ToolKits.Base;
 using System.Threading.Tasks;
 
 namespace MyBlog.Application.Blog
 {
-    public partial interface IBLogService
+    public partial interface IBlogService
     {
+        /// <summary>
+        /// 分页查询文章列表
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostAsync(PaginInput input);
     }
 }

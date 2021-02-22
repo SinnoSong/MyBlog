@@ -24,34 +24,5 @@
             <param name="access_token"></param>
             <returns></returns>
         </member>
-        <member name="M:MyBlog.HttpApi.Controllers.BlogController.InsertPostAsync(MyBlog.Application.Contracts.Blog.PostDto)">
-            <summary>
-            添加博客
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:MyBlog.HttpApi.Controllers.BlogController.GetPostAsync(System.Int32)">
-            <summary>
-            获取博客
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:MyBlog.HttpApi.Controllers.BlogController.DeletePostAsync(System.Int32)">
-            <summary>
-            删除博客
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:MyBlog.HttpApi.Controllers.BlogController.UpdatePostAsync(System.Int32,MyBlog.Application.Contracts.Blog.PostDto)">
-            <summary>
-            更新博客
-            </summary>
-            <param name="id"></param>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
     </members>
 </doc>
