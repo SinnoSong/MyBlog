@@ -1,7 +1,7 @@
-﻿using MimeKit;
+﻿using MailKit.Net.Smtp;
+using MimeKit;
 using MyBlog.Domain.Configurations;
 using System.Linq;
-using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace MyBolg.ToolKits.Helper
@@ -22,14 +22,14 @@ namespace MyBolg.ToolKits.Helper
 
             using var client = new SmtpClient
             {
-                //ServerCertificateValidationCallback= (s, c, h, e) => true
+                ServerCertificateValidationCallback = (s, c, h, e) => true
             };
-            //client.AuthenticationMechanisms.Remove("XOAUTH2");
+            client.AuthenticationMechanisms.Remove("XOAUTH2");
 
-            //await client.ConnectAsync(AppSettings.Email.Host, AppSettings.Email.Port, AppSettings.Email.UseSsl);
-            //await client.AuthenticateAsync(AppSettings.Email.From.Username, AppSettings.Email.From.Password);
-            //await client.SendAsync(message);
-            //await client.DisconnectAsync(true);
+            await client.ConnectAsync(AppSettings.Email.Host, AppSettings.Email.Port, AppSettings.Email.UseSsl);
+            await client.AuthenticateAsync(AppSettings.Email.From.Username, AppSettings.Email.From.Password);
+            await client.SendAsync(message);
+            await client.DisconnectAsync(true);
         }
     }
 }

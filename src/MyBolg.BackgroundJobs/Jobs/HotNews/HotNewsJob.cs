@@ -1,8 +1,10 @@
 ﻿using HtmlAgilityPack;
+using MimeKit;
 using MyBlog.Application.Contracts.HotNews;
 using MyBlog.Domain.HotNews.Repositories;
 using MyBlog.Domain.Shared.Enum;
 using MyBolg.ToolKits.Extensions;
+using MyBolg.ToolKits.Helper;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -34,7 +36,7 @@ namespace MyBolg.BackgroundJobs.Jobs.HotNews
                 new HotNewsJobItem<string> { Result = "https://www.cnblogs.com", Source = HotNewsEnum.cnblogs },
                 new HotNewsJobItem<string> { Result = "https://www.v2ex.com/?tab=hot", Source = HotNewsEnum.v2ex },
                 new HotNewsJobItem<string> { Result = "https://segmentfault.com/hottest", Source = HotNewsEnum.segmentfault },
-                new HotNewsJobItem<string> { Result = "https://web-api.juejin.im/query", Source = HotNewsEnum.juejin },
+                //new HotNewsJobItem<string> { Result = "https://web-api.juejin.im/query", Source = HotNewsEnum.juejin },
                 new HotNewsJobItem<string> { Result = "https://weixin.sogou.com", Source = HotNewsEnum.weixin },
                 new HotNewsJobItem<string> { Result = "https://www.douban.com/group/explore", Source = HotNewsEnum.douban },
                 new HotNewsJobItem<string> { Result = "https://www.ithome.com", Source = HotNewsEnum.ithome },
@@ -100,7 +102,7 @@ namespace MyBolg.BackgroundJobs.Jobs.HotNews
                 // 博客园
                 if (item.Source == HotNewsEnum.cnblogs)
                 {
-                    var nodes = ((HtmlDocument)item.Result).DocumentNode.SelectNodes("//div[@class='post_item_body']/h3/a").ToList();
+                    var nodes = ((HtmlDocument)item.Result).DocumentNode.SelectNodes("//div[@id='post_list']/article/section/div/a").ToList();
                     nodes.ForEach(x =>
                     {
                         hotNews.Add(new HotNews
@@ -165,7 +167,8 @@ namespace MyBolg.BackgroundJobs.Jobs.HotNews
                 // 微信热门
                 if (item.Source == HotNewsEnum.weixin)
                 {
-                    var nodes = ((HtmlDocument)item.Result).DocumentNode.SelectNodes("//ul[@class='news-list']/li/div[@class='txt-box']/h3/a").ToList();
+                    var html = item.Result as HtmlDocument;
+                    var nodes = html.DocumentNode.SelectNodes("//ul[@class='news-list']/li/div[@class='txt-box']/h3/a").ToList();
                     nodes.ForEach(x =>
                     {
                         hotNews.Add(new HotNews
@@ -381,16 +384,16 @@ namespace MyBolg.BackgroundJobs.Jobs.HotNews
                 await _hotNewsRepository.BulkInsertAsync(hotNews);
             }
 
-            //// 发送Email
-            //var message = new MimeMessage
-            //{
-            //    Subject = "【定时任务】每日热点数据抓取任务推送",
-            //    Body = new BodyBuilder
-            //    {
-            //        HtmlBody = $"本次抓取到{hotNews.Count()}条数据，时间:{DateTime.Now:yyyy-MM-dd HH:mm:ss}"
-            //    }.ToMessageBody()
-            //};
-            //await EmailHelper.SendAsync(message);
+            // 发送Email
+            var message = new MimeMessage
+            {
+                Subject = "【定时任务】每日热点数据抓取任务推送",
+                Body = new BodyBuilder
+                {
+                    HtmlBody = $"本次抓取到{hotNews.Count}条数据，时间:{DateTime.Now:yyyy-MM-dd HH:mm:ss}"
+                }.ToMessageBody()
+            };
+            await EmailHelper.SendAsync(message);
         }
     }
 }
