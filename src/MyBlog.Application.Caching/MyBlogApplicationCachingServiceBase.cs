@@ -3,7 +3,7 @@ using Volo.Abp.DependencyInjection;
 
 namespace MyBlog.Application.Caching
 {
-    public class MyBlogApplicationCachingServiceBase : ITransientDependency
+    public class CachingServiceBase : ITransientDependency
     {
         public IDistributedCache Cache { get; set; }
     }

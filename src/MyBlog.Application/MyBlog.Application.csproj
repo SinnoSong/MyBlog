@@ -8,6 +8,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Blog\IBLogService.Post.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="Blog\IBLogService.Post.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
         <ProjectReference Include="..\MyBlog.Application.Caching\MyBlog.Application.Caching.csproj" />
         <ProjectReference Include="..\MyBlog.Application.Contracts\MyBlog.Application.Contracts.csproj" />
         <ProjectReference Include="..\MyBlog.Domain.Shared\MyBlog.Domain.Shared.csproj" />

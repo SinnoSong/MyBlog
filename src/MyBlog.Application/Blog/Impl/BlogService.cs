@@ -1,4 +1,5 @@
-﻿using MyBlog.Application.Contracts.Blog;
+﻿using MyBlog.Application.Caching.Blog;
+using MyBlog.Application.Contracts.Blog;
 using MyBlog.Domain.Blog;
 using MyBlog.Domain.Repositories;
 using MyBolg.ToolKits.Base;
@@ -6,13 +7,25 @@ using System.Threading.Tasks;
 
 namespace MyBlog.Application.Blog.Impl
 {
-    public class BlogService : ServiceBase, IBlogService
+    public partial class BlogService : ServiceBase, IBlogService
     {
         private readonly IPostRepository _postRepository;
+        private readonly IBlogCacheService _blogCacheService;
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly ITagRepository _tagRepository;
+        private readonly IPostTagRepository _postTagsRepository;
+        private readonly IFriendLinkRepository _friendLinksRepository;
 
-        public BlogService(IPostRepository postRepository)
+        public BlogService(IPostRepository postRepository, IBlogCacheService blogCacheService,
+                            ICategoryRepository categoryRepository, ITagRepository tagRepository,
+                            IPostTagRepository postTagsRepository, IFriendLinkRepository friendLinksRepository)
         {
             _postRepository = postRepository;
+            _blogCacheService = blogCacheService;
+            _categoryRepository = categoryRepository;
+            _tagRepository = tagRepository;
+            _postTagsRepository = postTagsRepository;
+            _friendLinksRepository = friendLinksRepository;
         }
 
         public async Task<ServiceResult> DeletePostAsync(int id)
