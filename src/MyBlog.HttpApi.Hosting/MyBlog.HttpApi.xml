@@ -44,5 +44,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:MyBlog.HttpApi.Controllers.BlogController.QueryTagsAsync">
+            <summary>
+            查询标签列表
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>
