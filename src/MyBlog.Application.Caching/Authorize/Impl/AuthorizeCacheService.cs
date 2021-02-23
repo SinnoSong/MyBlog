@@ -21,7 +21,7 @@ namespace MyBlog.Application.Caching.Authorize.Impl
         /// <returns></returns>
         public async Task<ServiceResult<string>> GenerateTokenAsync(string access_token, Func<Task<ServiceResult<string>>> factory)
         {
-            return await Cache.GetOrAddAsync(KEY_GenerateToken.FormatWith(access_token), factory, CacheStrategy.ONE_HOURS);
+            return await Cache.GetOrAddAsync(KEY_GenerateToken.FormatWith(access_token), factory, CacheStrategy.NEVER);
         }
 
         /// <summary>

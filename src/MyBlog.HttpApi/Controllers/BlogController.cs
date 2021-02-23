@@ -4,6 +4,7 @@ using MyBlog.Application.Blog;
 using MyBlog.Application.Contracts.Blog;
 using MyBlog.Domain.Shared;
 using MyBolg.ToolKits.Base;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc;
 
@@ -30,6 +31,7 @@ namespace MyBlog.HttpApi.Controllers
         {
             return await _blogService.QueryPostAsync(input);
         }
+
         /// <summary>
         /// 根据Url查询文章详情
         /// </summary>
@@ -39,6 +41,16 @@ namespace MyBlog.HttpApi.Controllers
         public async Task<ServiceResult<PostDetailDto>> GetPostDetailAsync(string url)
         {
             return await _blogService.GetPostDetailAsync(url);
+        }
+
+        /// <summary>
+        /// 查询分类列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet, Route("categories")]
+        public async Task<ServiceResult<IEnumerable<QueryCategoryDto>>> QueryCategoriesAsync()
+        {
+            return await _blogService.QueryCategoriesAsync();
         }
     }
 }

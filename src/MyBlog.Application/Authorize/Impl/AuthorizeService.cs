@@ -78,7 +78,7 @@ namespace MyBlog.Application.Authorize.Impl
                      issuer: AppSettings.JWT.Domain,
                      audience: AppSettings.JWT.Domain,
                      claims: claims,
-                     expires: DateTime.Now.AddMinutes(AppSettings.JWT.Expires),
+                     expires: DateTime.Now.AddMonths(AppSettings.JWT.Expires),
                      signingCredentials: creds
                      );
 

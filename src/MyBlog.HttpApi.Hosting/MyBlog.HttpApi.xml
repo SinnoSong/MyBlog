@@ -38,5 +38,11 @@
             <param name="url"></param>
             <returns></returns>
         </member>
+        <member name="M:MyBlog.HttpApi.Controllers.BlogController.QueryCategoriesAsync">
+            <summary>
+            查询分类列表
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>
