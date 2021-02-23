@@ -12,5 +12,12 @@ namespace MyBlog.Application.Blog
         /// </summary>
         /// <returns></returns>
         Task<ServiceResult<IEnumerable<QueryTagDto>>> QueryTagsAsync();
+
+        /// <summary>
+        /// 获取标签名称
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        Task<ServiceResult<string>> GetTagAsync(string name);
     }
 }

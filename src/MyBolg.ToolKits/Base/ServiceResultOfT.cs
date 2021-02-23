@@ -25,10 +25,5 @@ namespace MyBolg.ToolKits.Base
             Code = ServiceResultCode.Succeed;
             Result = result;
         }
-
-        public void IsFailed(object fotmatWith)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
