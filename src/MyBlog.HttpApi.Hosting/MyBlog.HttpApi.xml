@@ -71,5 +71,12 @@
             <param name="name"></param>
             <returns></returns>
         </member>
+        <member name="M:MyBlog.HttpApi.Controllers.BlogController.QueryPostsByTagAsync(System.String)">
+            <summary>
+            通过标签名称查询文章列表
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

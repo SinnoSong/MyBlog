@@ -92,9 +92,20 @@ namespace MyBlog.HttpApi.Controllers
         /// <param name="name"></param>
         /// <returns></returns>
         [HttpGet, Route("tag")]
-        public async Task<ServiceResult<string>> GetTagAsync([Required]string name)
+        public async Task<ServiceResult<string>> GetTagAsync([Required] string name)
         {
             return await _blogService.GetTagAsync(name);
+        }
+
+        /// <summary>
+        /// 通过标签名称查询文章列表
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        [HttpGet, Route("posts/tag")]
+        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByTagAsync([Required] string name)
+        {
+            return await _blogService.QueryPostsByTagAsync(name);
         }
     }
 }
