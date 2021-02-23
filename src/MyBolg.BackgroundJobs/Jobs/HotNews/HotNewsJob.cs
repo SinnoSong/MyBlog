@@ -110,7 +110,7 @@
 //                            Title = x.InnerText,
 //                            Url = x.GetAttributeValue("href", ""),
 //                            SourceId = sourceId,
-//                            CreateTime = DateTime.Now
+//                            CreationTime = DateTime.Now
 //                        });
 //                    });
 //                }
@@ -126,7 +126,7 @@
 //                            Title = x.InnerText,
 //                            Url = $"https://www.v2ex.com{x.GetAttributeValue("href", "")}",
 //                            SourceId = sourceId,
-//                            CreateTime = DateTime.Now
+//                            CreationTime = DateTime.Now
 //                        });
 //                    });
 //                }
@@ -142,7 +142,7 @@
 //                            Title = x.SelectSingleNode(".//h4").InnerText,
 //                            Url = $"https://segmentfault.com{x.GetAttributeValue("href", "")}",
 //                            SourceId = sourceId,
-//                            CreateTime = DateTime.Now
+//                            CreationTime = DateTime.Now
 //                        });
 //                    });
 //                }
@@ -159,7 +159,7 @@
 //                            Title = node["node"]["title"].ToString(),
 //                            Url = node["node"]["originalUrl"].ToString(),
 //                            SourceId = sourceId,
-//                            CreateTime = DateTime.Now
+//                            CreationTime = DateTime.Now
 //                        });
 //                    }
 //                }
@@ -176,7 +176,7 @@
 //                            Title = x.InnerText,
 //                            Url = x.GetAttributeValue("href", ""),
 //                            SourceId = sourceId,
-//                            CreateTime = DateTime.Now
+//                            CreationTime = DateTime.Now
 //                        });
 //                    });
 //                }
@@ -192,7 +192,7 @@
 //                            Title = x.InnerText,
 //                            Url = x.GetAttributeValue("href", ""),
 //                            SourceId = sourceId,
-//                            CreateTime = DateTime.Now
+//                            CreationTime = DateTime.Now
 //                        });
 //                    });
 //                }
@@ -208,7 +208,7 @@
 //                            Title = x.InnerText,
 //                            Url = x.GetAttributeValue("href", ""),
 //                            SourceId = sourceId,
-//                            CreateTime = DateTime.Now
+//                            CreationTime = DateTime.Now
 //                        });
 //                    });
 //                }
@@ -224,7 +224,7 @@
 //                            Title = x.InnerText,
 //                            Url = $"https://36kr.com{x.GetAttributeValue("href", "")}",
 //                            SourceId = sourceId,
-//                            CreateTime = DateTime.Now
+//                            CreationTime = DateTime.Now
 //                        });
 //                    });
 //                }
@@ -241,7 +241,7 @@
 //                            Title = node["topic_name"].ToString(),
 //                            Url = node["topic_url"].ToString().Replace("amp;", ""),
 //                            SourceId = sourceId,
-//                            CreateTime = DateTime.Now
+//                            CreationTime = DateTime.Now
 //                        });
 //                    }
 //                }
@@ -257,7 +257,7 @@
 //                            Title = x.InnerText,
 //                            Url = x.GetAttributeValue("href", ""),
 //                            SourceId = sourceId,
-//                            CreateTime = DateTime.Now
+//                            CreationTime = DateTime.Now
 //                        });
 //                    });
 //                }
@@ -273,7 +273,7 @@
 //                            Title = x.InnerText,
 //                            Url = $"https://s.weibo.com{x.GetAttributeValue("href", "").Replace("#", "%23")}",
 //                            SourceId = sourceId,
-//                            CreateTime = DateTime.Now
+//                            CreationTime = DateTime.Now
 //                        });
 //                    });
 //                }
@@ -290,7 +290,7 @@
 //                            Title = node["target"]["title"].ToString(),
 //                            Url = $"https://www.zhihu.com/question/{node["target"]["id"]}",
 //                            SourceId = sourceId,
-//                            CreateTime = DateTime.Now
+//                            CreationTime = DateTime.Now
 //                        });
 //                    }
 //                }
@@ -306,7 +306,7 @@
 //                            Title = x.InnerText,
 //                            Url = $"https://daily.zhihu.com{x.GetAttributeValue("href", "")}",
 //                            SourceId = sourceId,
-//                            CreateTime = DateTime.Now
+//                            CreationTime = DateTime.Now
 //                        });
 //                    });
 //                }
@@ -322,7 +322,7 @@
 //                            Title = x.InnerText,
 //                            Url = x.GetAttributeValue("href", ""),
 //                            SourceId = sourceId,
-//                            CreateTime = DateTime.Now
+//                            CreationTime = DateTime.Now
 //                        });
 //                    });
 //                }
@@ -338,7 +338,7 @@
 //                            Title = x.InnerText.Trim().Replace("\n", "").Replace(" ", ""),
 //                            Url = $"https://github.com{x.GetAttributeValue("href", "")}",
 //                            SourceId = sourceId,
-//                            CreateTime = DateTime.Now
+//                            CreationTime = DateTime.Now
 //                        });
 //                    });
 //                }
@@ -355,7 +355,7 @@
 //                            Title = node["word"].ToString(),
 //                            Url = $"#{node["hot_value"]}",
 //                            SourceId = sourceId,
-//                            CreateTime = DateTime.Now
+//                            CreationTime = DateTime.Now
 //                        });
 //                    }
 //                }
@@ -372,7 +372,7 @@
 //                            Title = node["aweme_info"]["desc"].ToString(),
 //                            Url = node["aweme_info"]["share_url"].ToString(),
 //                            SourceId = sourceId,
-//                            CreateTime = DateTime.Now
+//                            CreationTime = DateTime.Now
 //                        });
 //                    }
 //                }

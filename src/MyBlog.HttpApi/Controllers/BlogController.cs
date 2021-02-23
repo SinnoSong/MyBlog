@@ -13,7 +13,7 @@ namespace MyBlog.HttpApi.Controllers
 {
     [ApiController, ApiExplorerSettings(GroupName = Grouping.GroupName_v1)]
     [Route("[controller]"), Authorize]
-    public class BlogController : AbpController
+    public partial class BlogController : AbpController
     {
         private readonly IBlogService _blogService;
 

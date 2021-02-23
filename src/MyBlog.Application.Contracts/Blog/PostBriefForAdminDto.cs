@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace MyBlog.Application.Contracts.Blog
 {
-    public class QueryPostDto
+    public class PostBriefForAdminDto : PostBriefDto
     {
-        public int Year { get; set; }
-        public IEnumerable<PostBriefDto> Posts { get; set; }
+        /// <summary>
+        /// 主键
+        /// </summary>
+        public int Id { get; set; }
     }
 }

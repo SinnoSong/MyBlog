@@ -24,6 +24,13 @@
             <param name="access_token"></param>
             <returns></returns>
         </member>
+        <member name="M:MyBlog.HttpApi.Controllers.BlogController.QueryPostsForAdminAsync(MyBlog.PaginInput)">
+            <summary>
+            分页查询文章列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:MyBlog.HttpApi.Controllers.BlogController.QueryPostAsync(MyBlog.PaginInput)">
             <summary>
             分页查询文章

@@ -25,12 +25,12 @@ namespace MyBlog.Application.Blog.Impl
 
                  var list = _postRepository.OrderByDescending(x => x.CreationTime)
                                            .PageByIndex(input.Page, input.Limit)
-                                           .Select(x => new PostBrieDto
+                                           .Select(x => new PostBriefDto
                                            {
                                                Title = x.Title,
                                                Url = x.Url,
                                                Year = x.CreationTime.Year,
-                                               CreateTime = x.CreationTime.TryToDateTime()
+                                               CreationTime = x.CreationTime.TryToDateTime()
                                            }).GroupBy(x => x.Year)
                                            .Select(x => new QueryPostDto
                                            {
@@ -119,12 +119,12 @@ namespace MyBlog.Application.Blog.Impl
                              on posts.CategoryId equals categories.Id
                              where categories.DisplayName.Equals(name)
                              orderby posts.CreationTime descending
-                             select new PostBrieDto
+                             select new PostBriefDto
                              {
                                  Title = posts.Title,
                                  Url = posts.Url,
                                  Year = posts.CreationTime.Year,
-                                 CreateTime = posts.CreationTime.TryToDateTime()
+                                 CreationTime = posts.CreationTime.TryToDateTime()
                              }).GroupBy(x => x.Year)
                             .Select(x => new QueryPostDto
                             {
@@ -153,12 +153,12 @@ namespace MyBlog.Application.Blog.Impl
                              on post_tags.PostId equals posts.Id
                              where tags.DisplayName.Equals(name)
                              orderby posts.CreationTime descending
-                             select new PostBrieDto
+                             select new PostBriefDto
                              {
                                  Title = posts.Title,
                                  Url = posts.Url,
                                  Year = posts.CreationTime.Year,
-                                 CreateTime = posts.CreationTime.TryToDateTime()
+                                 CreationTime = posts.CreationTime.TryToDateTime()
                              }).GroupBy(x => x.Year)
                              .Select(x => new QueryPostDto
                              {

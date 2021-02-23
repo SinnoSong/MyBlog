@@ -4,6 +4,11 @@
         <name>MyBlog.Application.Contracts</name>
     </assembly>
     <members>
+        <member name="P:MyBlog.Application.Contracts.Blog.PostBriefForAdminDto.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
         <member name="T:MyBlog.Application.Contracts.Blog.PostDetailDto">
             <summary>
             文章详情
@@ -42,6 +47,11 @@
         <member name="P:MyBlog.Application.Contracts.Blog.PostDto.CreationTime">
             <summary>
             创建时间
+            </summary>
+        </member>
+        <member name="P:MyBlog.Application.Contracts.Blog.QueryPostForAdminDto.Posts">
+            <summary>
+            Posts
             </summary>
         </member>
         <member name="P:MyBlog.Application.Contracts.HotNews.HotNewsJobItem`1.Result">
