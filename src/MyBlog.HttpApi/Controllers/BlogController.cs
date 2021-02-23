@@ -5,6 +5,7 @@ using MyBlog.Application.Contracts.Blog;
 using MyBlog.Domain.Shared;
 using MyBolg.ToolKits.Base;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc;
 
@@ -61,6 +62,17 @@ namespace MyBlog.HttpApi.Controllers
         public async Task<ServiceResult<IEnumerable<QueryTagDto>>> QueryTagsAsync()
         {
             return await _blogService.QueryTagsAsync();
+        }
+
+        /// <summary>
+        /// 获取分类名称
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        [HttpGet, Route("category")]
+        public async Task<ServiceResult<string>> GetCategoryAsync([Required] string name)
+        {
+            return await _blogService.GetCategoryAsync(name);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MyBolg.ToolKits.Base.Enum;
+using System;
 
 namespace MyBolg.ToolKits.Base
 {
@@ -23,6 +24,11 @@ namespace MyBolg.ToolKits.Base
             Message = message;
             Code = ServiceResultCode.Succeed;
             Result = result;
+        }
+
+        public void IsFailed(object fotmatWith)
+        {
+            throw new NotImplementedException();
         }
     }
 }

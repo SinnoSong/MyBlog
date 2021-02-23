@@ -50,5 +50,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:MyBlog.HttpApi.Controllers.BlogController.GetCategoryAsync(System.String)">
+            <summary>
+            获取分类名称
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

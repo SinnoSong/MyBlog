@@ -1,5 +1,7 @@
 ﻿using MyBlog.Application.Contracts.Blog;
+using MyBlog.Domain.Shared;
 using MyBolg.ToolKits.Base;
+using MyBolg.ToolKits.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +38,28 @@ namespace MyBlog.Application.Blog.Impl
                 result.IsSuccess(list);
                 return result;
             });
+        }
+
+        /// <summary>
+        /// 获取分类名称
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult<string>> GetCategoryAsync(string name)
+        {
+            return await _blogCacheService.GetCategoryAsync(name, async () =>
+             {
+                 var result = new ServiceResult<string>();
+
+                 var category = await _categoryRepository.FindAsync(x => x.DisplayName.Equals(name));
+                 if (null == category)
+                 {
+                     result.IsFailed(ResponseText.WHAT_NOT_EXIST.FormatWith("分类", name));
+                     return result;
+                 }
+                 result.IsSuccess(category.CategoryName);
+                 return result;
+             });
         }
     }
 }

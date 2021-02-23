@@ -12,5 +12,12 @@ namespace MyBlog.Application.Blog
         /// </summary>
         /// <returns></returns>
         Task<ServiceResult<IEnumerable<QueryCategoryDto>>> QueryCategoriesAsync();
+
+        /// <summary>
+        /// 获取分类名称
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        Task<ServiceResult<string>> GetCategoryAsync(string name);
     }
 }
