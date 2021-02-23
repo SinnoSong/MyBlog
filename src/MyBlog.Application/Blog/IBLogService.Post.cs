@@ -1,5 +1,6 @@
 ﻿using MyBlog.Application.Contracts.Blog;
 using MyBolg.ToolKits.Base;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MyBlog.Application.Blog
@@ -19,5 +20,12 @@ namespace MyBlog.Application.Blog
         /// <param name="url"></param>
         /// <returns></returns>
         Task<ServiceResult<PostDetailDto>> GetPostDetailAsync(string url);
+
+        /// <summary>
+        /// 通过分类名称查询文章列表
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByCategoryAsync(string name);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using MyBlog.Application.Contracts.Blog;
 using MyBolg.ToolKits.Base;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MyBlog.Application.Caching.Blog
@@ -21,5 +22,13 @@ namespace MyBlog.Application.Caching.Blog
         /// <param name="factory"></param>
         /// <returns></returns>
         Task<ServiceResult<PostDetailDto>> GetPostDetailAsync(string url, Func<Task<ServiceResult<PostDetailDto>>> factory);
+
+        /// <summary>
+        /// 通过分类名称查询文章列表
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="factory"></param>
+        /// <returns></returns>
+        Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByCategoryAsync(string name, Func<Task<ServiceResult<IEnumerable<QueryPostDto>>>> factory);
     }
 }

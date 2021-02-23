@@ -2,6 +2,7 @@
 using MyBlog.Domain.Shared;
 using MyBolg.ToolKits.Base;
 using MyBolg.ToolKits.Extensions;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -99,6 +100,38 @@ namespace MyBlog.Application.Blog.Impl
                  };
 
                  result.IsSuccess(postDetail);
+                 return result;
+             });
+        }
+
+        /// <summary>
+        /// 通过分类名称查询文章列表
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByCategoryAsync(string name)
+        {
+            return await _blogCacheService.QueryPostsByCategoryAsync(name, async () =>
+             {
+                 var result = new ServiceResult<IEnumerable<QueryPostDto>>();
+                 var list = (from posts in await _postRepository.GetListAsync()
+                             join categories in await _categoryRepository.GetListAsync()
+                             on posts.CategoryId equals categories.Id
+                             where categories.DisplayName.Equals(name)
+                             orderby posts.CreationTime descending
+                             select new PostBrieDto
+                             {
+                                 Title = posts.Title,
+                                 Url = posts.Url,
+                                 Year = posts.CreationTime.Year,
+                                 CreateTime = posts.CreationTime.TryToDateTime()
+                             }).GroupBy(x => x.Year)
+                            .Select(x => new QueryPostDto
+                            {
+                                Year = x.Key,
+                                Posts = x.ToList()
+                            });
+                 result.IsSuccess(list);
                  return result;
              });
         }

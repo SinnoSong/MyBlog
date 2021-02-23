@@ -74,5 +74,16 @@ namespace MyBlog.HttpApi.Controllers
         {
             return await _blogService.GetCategoryAsync(name);
         }
+
+        /// <summary>
+        /// 通过分类名称查询文章列表
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        [HttpGet, Route("posts/category")]
+        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByCategoryAsync([Required] string name)
+        {
+            return await _blogService.QueryPostsByCategoryAsync(name);
+        }
     }
 }
