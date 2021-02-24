@@ -1,4 +1,5 @@
 ﻿using MyBlog.Application.Contracts.Blog;
+using MyBlog.Application.Contracts.Blog.Params;
 using MyBolg.ToolKits.Base;
 using System.Threading.Tasks;
 
@@ -12,5 +13,27 @@ namespace MyBlog.Application.Blog
         /// <param name="input"></param>
         /// <returns></returns>
         Task<ServiceResult<PagedList<QueryPostForAdminDto>>> QueryPostsForAdminAsync(PaginInput input);
+
+        /// <summary>
+        /// 新增文章
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task<ServiceResult> InsertPostAsync(EditPostInput input);
+
+        /// <summary>
+        /// 更新文章
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task<ServiceResult> UpdatePostAsync(int id, EditPostInput input);
+
+        /// <summary>
+        /// 删除文章
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<ServiceResult> DeletePostAsync(int id);
     }
 }

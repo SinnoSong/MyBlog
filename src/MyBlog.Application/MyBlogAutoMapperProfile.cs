@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MyBlog.Application.Contracts.Blog;
+using MyBlog.Application.Contracts.Blog.Params;
 using MyBlog.Domain.Blog;
 
 namespace MyBlog.Application
@@ -9,6 +10,7 @@ namespace MyBlog.Application
         public MyBlogAutoMapperProfile()
         {
             CreateMap<Post, PostDto>().ReverseMap().ForMember(x => x.Id, opt => opt.Ignore());
+            CreateMap<EditPostInput, Post>().ForMember(x => x.Id, opt => opt.Ignore());
         }
     }
 }

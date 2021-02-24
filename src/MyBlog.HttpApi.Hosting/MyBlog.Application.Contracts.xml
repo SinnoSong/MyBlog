@@ -4,6 +4,11 @@
         <name>MyBlog.Application.Contracts</name>
     </assembly>
     <members>
+        <member name="P:MyBlog.Application.Contracts.Blog.Params.EditPostInput.Tags">
+            <summary>
+            标签列表
+            </summary>
+        </member>
         <member name="P:MyBlog.Application.Contracts.Blog.PostBriefForAdminDto.Id">
             <summary>
             主键
