@@ -22,6 +22,8 @@ namespace MyBlog.HttpApi.Controllers
             _blogService = blogService;
         }
 
+        #region Posts
+
         /// <summary>
         /// 分页查询文章
         /// </summary>
@@ -45,6 +47,32 @@ namespace MyBlog.HttpApi.Controllers
         }
 
         /// <summary>
+        /// 通过分类名称查询文章列表
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        [HttpGet, Route("posts/category")]
+        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByCategoryAsync([Required] string name)
+        {
+            return await _blogService.QueryPostsByCategoryAsync(name);
+        }
+
+        /// <summary>
+        /// 通过标签名称查询文章列表
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        [HttpGet, Route("posts/tag")]
+        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByTagAsync([Required] string name)
+        {
+            return await _blogService.QueryPostsByTagAsync(name);
+        }
+
+        #endregion Posts
+
+        #region Categories
+
+        /// <summary>
         /// 查询分类列表
         /// </summary>
         /// <returns></returns>
@@ -52,16 +80,6 @@ namespace MyBlog.HttpApi.Controllers
         public async Task<ServiceResult<IEnumerable<QueryCategoryDto>>> QueryCategoriesAsync()
         {
             return await _blogService.QueryCategoriesAsync();
-        }
-
-        /// <summary>
-        /// 查询标签列表
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet, Route("tags")]
-        public async Task<ServiceResult<IEnumerable<QueryTagDto>>> QueryTagsAsync()
-        {
-            return await _blogService.QueryTagsAsync();
         }
 
         /// <summary>
@@ -75,15 +93,18 @@ namespace MyBlog.HttpApi.Controllers
             return await _blogService.GetCategoryAsync(name);
         }
 
+        #endregion Categories
+
+        #region Tags
+
         /// <summary>
-        /// 通过分类名称查询文章列表
+        /// 查询标签列表
         /// </summary>
-        /// <param name="name"></param>
         /// <returns></returns>
-        [HttpGet, Route("posts/category")]
-        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByCategoryAsync([Required] string name)
+        [HttpGet, Route("tags")]
+        public async Task<ServiceResult<IEnumerable<QueryTagDto>>> QueryTagsAsync()
         {
-            return await _blogService.QueryPostsByCategoryAsync(name);
+            return await _blogService.QueryTagsAsync();
         }
 
         /// <summary>
@@ -97,15 +118,20 @@ namespace MyBlog.HttpApi.Controllers
             return await _blogService.GetTagAsync(name);
         }
 
+        #endregion Tags
+
+        #region FriendLinks
+
         /// <summary>
-        /// 通过标签名称查询文章列表
+        /// 查询友链列表
         /// </summary>
-        /// <param name="name"></param>
         /// <returns></returns>
-        [HttpGet, Route("posts/tag")]
-        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByTagAsync([Required] string name)
+        [HttpGet, Route("friendLinks")]
+        public async Task<ServiceResult<IEnumerable<FriendLinkDto>>> QueryFriendLinksAsync()
         {
-            return await _blogService.QueryPostsByTagAsync(name);
+            return await _blogService.QueryFriendLinksAsync();
         }
+
+        #endregion FriendLinks
     }
 }
