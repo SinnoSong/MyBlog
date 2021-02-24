@@ -111,5 +111,37 @@ namespace MyBlog.Application.Blog
         Task<ServiceResult> DeleteTagAsync(int id);
 
         #endregion Tags
+
+        #region FriendLinks
+
+        /// <summary>
+        /// 查询友链列表
+        /// </summary>
+        /// <returns></returns>
+        Task<ServiceResult<IEnumerable<QueryFriendLinkForAdminDto>>> QueryFriendLinkForAdminAsync();
+
+        /// <summary>
+        /// 新增友链
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task<ServiceResult> InsertFriendLinkAsync(EditFriendLinkInput input);
+
+        /// <summary>
+        /// 更新友链
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task<ServiceResult> UpdateFriendLinkAsync(int id, EditFriendLinkInput input);
+
+        /// <summary>
+        /// 删除友链
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<ServiceResult> DeleteFriendLinkAsync(int id);
+
+        #endregion FriendLinks
     }
 }

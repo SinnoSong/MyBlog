@@ -348,5 +348,79 @@ namespace MyBlog.Application.Blog.Impl
         }
 
         #endregion Tags
+
+        #region FriendLinks
+
+        /// <summary>
+        /// 删除友链
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult> DeleteFriendLinkAsync(int id)
+        {
+            var result = new ServiceResult();
+            var friendLink = await _friendLinksRepository.FindAsync(id);
+            if (friendLink == null)
+            {
+                result.IsFailed(ResponseText.WHAT_NOT_EXIST.FormatWith("id", id));
+                return result;
+            }
+            await _friendLinksRepository.DeleteAsync(id);
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_FriendLink);
+            result.IsSuccess(ResponseText.DELETE_SUCCESS);
+            return result;
+        }
+
+        /// <summary>
+        /// 新增友链
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult> InsertFriendLinkAsync(EditFriendLinkInput input)
+        {
+            var result = new ServiceResult();
+            var friendLink = ObjectMapper.Map<EditFriendLinkInput, FriendLink>(input);
+            await _friendLinksRepository.InsertAsync(friendLink);
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_FriendLink);
+            result.IsSuccess(ResponseText.INSERT_SUCCESS);
+            return result;
+        }
+
+        /// <summary>
+        /// 查询友链列表
+        /// </summary>
+        /// <returns></returns>
+        public async Task<ServiceResult<IEnumerable<QueryFriendLinkForAdminDto>>> QueryFriendLinkForAdminAsync()
+        {
+            var result = new ServiceResult<IEnumerable<QueryFriendLinkForAdminDto>>();
+            var friendLinks = await _friendLinksRepository.GetListAsync();
+            var dto = ObjectMapper.Map<List<FriendLink>, IEnumerable<QueryFriendLinkForAdminDto>>(friendLinks);
+            result.IsSuccess(dto);
+            return result;
+        }
+
+        /// <summary>
+        /// 更新友链
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult> UpdateFriendLinkAsync(int id, EditFriendLinkInput input)
+        {
+            var result = new ServiceResult();
+            var friendLink = await _friendLinksRepository.FindAsync(id);
+            if (friendLink == null)
+            {
+                result.IsFailed(ResponseText.WHAT_NOT_EXIST.FormatWith("id", id));
+                return result;
+            }
+            ObjectMapper.Map(input, friendLink);
+            await _friendLinksRepository.UpdateAsync(friendLink);
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_FriendLink);
+            result.IsSuccess(ResponseText.UPDATE_SUCCESS);
+            return result;
+        }
+
+        #endregion FriendLinks
     }
 }
