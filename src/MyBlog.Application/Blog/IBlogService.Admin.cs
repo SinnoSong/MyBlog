@@ -35,5 +35,12 @@ namespace MyBlog.Application.Blog
         /// <param name="id"></param>
         /// <returns></returns>
         Task<ServiceResult> DeletePostAsync(int id);
+
+        /// <summary>
+        /// 获取文章详情
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<ServiceResult<PostForAdminDto>> GetPostForAdminAsync(int id);
     }
 }

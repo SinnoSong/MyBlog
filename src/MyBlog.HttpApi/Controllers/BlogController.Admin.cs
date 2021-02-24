@@ -59,5 +59,17 @@ namespace MyBlog.HttpApi.Controllers
         {
             return await _blogService.DeletePostAsync(id);
         }
+
+        /// <summary>
+        /// 获取文章详情
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet, Route("admin/post"), Authorize]
+        [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
+        public async Task<ServiceResult<PostForAdminDto>> GetPostForAdminAsync([Required] int id)
+        {
+            return await _blogService.GetPostForAdminAsync(id);
+        }
     }
 }

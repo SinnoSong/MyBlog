@@ -161,5 +161,29 @@ namespace MyBlog.Application.Blog.Impl
             result.IsSuccess(ResponseText.DELETE_SUCCESS);
             return result;
         }
+
+        /// <summary>
+        /// 获取文章详情
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult<PostForAdminDto>> GetPostForAdminAsync(int id)
+        {
+            var result = new ServiceResult<PostForAdminDto>();
+
+            var post = await _postRepository.GetAsync(id);
+
+            var tags = from post_tags in await _postTagsRepository.GetListAsync()
+                       join tag in await _tagRepository.GetListAsync()
+                       on post_tags.TagId equals tag.Id
+                       where post_tags.PostId.Equals(post.Id)
+                       select tag.TagName;
+            var detail = ObjectMapper.Map<Post, PostForAdminDto>(post);
+            detail.Tags = tags;
+            detail.Url = post.Url.Split("/").Where(x => !string.IsNullOrEmpty(x)).Last();
+
+            result.IsSuccess(detail);
+            return result;
+        }
     }
 }

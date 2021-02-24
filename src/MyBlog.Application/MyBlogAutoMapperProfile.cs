@@ -11,6 +11,7 @@ namespace MyBlog.Application
         {
             CreateMap<Post, PostDto>().ReverseMap().ForMember(x => x.Id, opt => opt.Ignore());
             CreateMap<EditPostInput, Post>().ForMember(x => x.Id, opt => opt.Ignore());
+            CreateMap<Post, PostForAdminDto>().ForMember(x => x.Tags, opt => opt.Ignore());
         }
     }
 }

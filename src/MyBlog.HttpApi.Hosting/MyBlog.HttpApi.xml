@@ -53,6 +53,13 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:MyBlog.HttpApi.Controllers.BlogController.GetPostForAdminAsync(System.Int32)">
+            <summary>
+            获取文章详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:MyBlog.HttpApi.Controllers.BlogController.QueryPostAsync(MyBlog.PaginInput)">
             <summary>
             分页查询文章
