@@ -154,4 +154,20 @@
         /// </summary>
         public const string PARAMETER_ERROR = "参数错误";
     }
+
+    /// <summary>
+    /// 缓存前缀
+    /// </summary>
+    public static class CachePrefix
+    {
+        public const string Authorize = "Authorize";
+
+        public const string Blog = "Blog";
+
+        public const string Blog_Post = Blog + ":Post";
+
+        public const string Blog_Tag = Blog + ":Tag";
+
+        public const string Blog_Category = Blog + ":Category";
+    }
 }

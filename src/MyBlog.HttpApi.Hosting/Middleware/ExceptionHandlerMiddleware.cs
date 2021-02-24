@@ -51,7 +51,7 @@ namespace MyBlog.HttpApi.Hosting.Middleware
         /// <param name="context"></param>
         /// <param name="message"></param>
         /// <returns></returns>
-        private async Task ExceptionHandlerAsync(HttpContext context, string message)
+        private async static Task ExceptionHandlerAsync(HttpContext context, string message)
         {
             context.Response.ContentType = "application/json;charset=utf-8";
 

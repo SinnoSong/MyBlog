@@ -73,6 +73,8 @@ namespace MyBlog.Application.Blog.Impl
             });
             await _postTagsRepository.BulkInsertAsync(postTags);
 
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_Post);
+
             result.IsSuccess(ResponseText.INSERT_SUCCESS);
             return result;
         }
@@ -130,6 +132,8 @@ namespace MyBlog.Application.Blog.Impl
                                      });
             await _postTagsRepository.BulkInsertAsync(postTags);
 
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_Post);
+
             result.IsSuccess(ResponseText.UPDATE_SUCCESS);
             return result;
         }
@@ -151,6 +155,8 @@ namespace MyBlog.Application.Blog.Impl
 
             await _postRepository.DeleteAsync(id);
             await _postTagsRepository.DeleteAsync(x => x.PostId == id);
+
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_Post);
 
             result.IsSuccess(ResponseText.DELETE_SUCCESS);
             return result;
