@@ -9,7 +9,7 @@ namespace MyBlog.Application.Caching.Blog.Impl
 {
     public partial class BlogCacheService
     {
-        private const string KEY_QueryFriendLinks = "FriendLinks:QueryFriendLinks";
+        private const string KEY_QueryFriendLinks = "Blog:FriendLinks:QueryFriendLinks";
 
         /// <summary>
         /// 查询友链列表

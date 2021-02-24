@@ -169,5 +169,6 @@
         public const string Blog_Tag = Blog + ":Tag";
 
         public const string Blog_Category = Blog + ":Category";
+        public const string Blog_FriendLink = Blog + ":FriendLink";
     }
 }

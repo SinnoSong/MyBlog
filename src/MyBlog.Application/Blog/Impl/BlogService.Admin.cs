@@ -1,5 +1,4 @@
 ﻿using MyBlog.Application.Contracts.Blog;
-using MyBlog.Application.Contracts.Blog.Params;
 using MyBlog.Domain.Blog;
 using MyBlog.Domain.Shared;
 using MyBolg.ToolKits.Base;
@@ -7,13 +6,14 @@ using MyBolg.ToolKits.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MyBlog.Application.Blog.Impl
 {
     public partial class BlogService
     {
+        #region Posts
+
         /// <summary>
         /// 分页查询文章列表
         /// </summary>
@@ -146,7 +146,7 @@ namespace MyBlog.Application.Blog.Impl
         public async Task<ServiceResult> DeletePostAsync(int id)
         {
             var result = new ServiceResult();
-            var post = await _postRepository.GetAsync(id);
+            var post = await _postRepository.FindAsync(id);
             if (null == post)
             {
                 result.IsFailed(ResponseText.WHAT_NOT_EXIST.FormatWith("Id", id));
@@ -185,5 +185,168 @@ namespace MyBlog.Application.Blog.Impl
             result.IsSuccess(detail);
             return result;
         }
+
+        #endregion Posts
+
+        #region Categories
+
+        /// <summary>
+        /// 删除分类
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult> DeleteCategoryAsync(int id)
+        {
+            var result = new ServiceResult();
+            var category = await _categoryRepository.FindAsync(id);
+            if (category == null)
+            {
+                result.IsFailed(ResponseText.WHAT_NOT_EXIST.FormatWith("id", id));
+                return result;
+            }
+            await _categoryRepository.DeleteAsync(category);
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_Category);
+
+            result.IsSuccess(ResponseText.DELETE_SUCCESS);
+            return result;
+        }
+
+        /// <summary>
+        /// 新增分类
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult> InsertCategoryAsync(EditCategoryInput input)
+        {
+            var result = new ServiceResult();
+            var category = ObjectMapper.Map<EditCategoryInput, Category>(input);
+            await _categoryRepository.InsertAsync(category);
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_FriendLink);
+            result.IsSuccess(ResponseText.INSERT_SUCCESS);
+            return result;
+        }
+
+        /// <summary>
+        /// 查询分类列表
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult<IEnumerable<QueryCategoryForAdminDto>>> QueryCategoryForAdminAsync()
+        {
+            var result = new ServiceResult<IEnumerable<QueryCategoryForAdminDto>>();
+
+            var posts = await _postRepository.GetListAsync();
+
+            var categories = _categoryRepository.GetListAsync().Result
+                                          .Select(x => new QueryCategoryForAdminDto
+                                          {
+                                              Id = x.Id,
+                                              CategoryName = x.CategoryName,
+                                              DisplayName = x.DisplayName,
+                                              Count = posts.Count(p => p.CategoryId == x.Id)
+                                          });
+            result.IsSuccess(categories);
+            return result;
+        }
+
+        /// <summary>
+        /// 更新分类
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult> UpdateCategoryAsync(int id, EditCategoryInput input)
+        {
+            var result = new ServiceResult();
+            var category = await _categoryRepository.GetAsync(id);
+            ObjectMapper.Map(input, category);
+            await _categoryRepository.UpdateAsync(category);
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_FriendLink);
+            result.IsSuccess(ResponseText.UPDATE_SUCCESS);
+            return result;
+        }
+
+        #endregion Categories
+
+        #region Tags
+
+        /// <summary>
+        /// 删除标签
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult> DeleteTagAsync(int id)
+        {
+            var result = new ServiceResult();
+            var tag = await _tagRepository.FindAsync(id);
+            if (tag == null)
+            {
+                result.IsFailed(ResponseText.WHAT_NOT_EXIST.FormatWith("Id", id));
+                return result;
+            }
+            await _tagRepository.DeleteAsync(tag);
+            await _postTagsRepository.DeleteAsync(x => x.TagId == id);
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_Tag);
+            result.IsSuccess(ResponseText.DELETE_SUCCESS);
+            return result;
+        }
+
+        /// <summary>
+        /// 新增标签
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult> InsertTagAsync(EditTagInput input)
+        {
+            var result = new ServiceResult();
+            var tag = ObjectMapper.Map<EditTagInput, Tag>(input);
+            await _tagRepository.InsertAsync(tag);
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_Tag);
+            result.IsSuccess(ResponseText.INSERT_SUCCESS);
+            return result;
+        }
+
+        /// <summary>
+        /// 查询标签列表
+        /// </summary>
+        /// <returns></returns>
+        public async Task<ServiceResult<IEnumerable<QueryTagForAdminDto>>> QueryTagsForAdminAsync()
+        {
+            var result = new ServiceResult<IEnumerable<QueryTagForAdminDto>>();
+            var postTags = await _postTagsRepository.GetListAsync();
+            var tags = _tagRepository.GetListAsync().Result.Select(x => new QueryTagForAdminDto
+            {
+                Id = x.Id,
+                DisplayName = x.DisplayName,
+                TagName = x.TagName,
+                Count = postTags.Count(p => p.TagId == x.Id)
+            });
+            result.IsSuccess(tags);
+            return result;
+        }
+
+        /// <summary>
+        /// 更新标签
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult> UpdateTagAsync(int id, EditTagInput input)
+        {
+            var result = new ServiceResult();
+            var tag = await _tagRepository.FindAsync(id);
+            if (tag == null)
+            {
+                result.IsFailed(ResponseText.WHAT_NOT_EXIST.FormatWith("Id", id));
+                return result;
+            }
+            ObjectMapper.Map(input, tag);
+            await _tagRepository.UpdateAsync(tag);
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_Tag);
+            result.IsSuccess(ResponseText.UPDATE_SUCCESS);
+            return result;
+        }
+
+        #endregion Tags
     }
 }
