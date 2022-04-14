@@ -183,14 +183,13 @@ template {
 }
 
 @font-face {
-    font-family: 'Fira Code Medium';
-    src: url('https://static.meowv.com/fonts/FiraCode-Medium.woff2') format('woff2'), url("https://static.meowv.com/fonts/FiraCode-Medium.woff") format("woff");
+    font-family: 'Cascadia Code';
     font-weight: 500;
     font-style: normal;
 }
 
 html {
-    font-family: 'Fira Code Medium', Microsoft Yahei, monospace;
+    font-family: 'Cascadia Code',Microsoft Yahei, monospace;
     overflow-x: hidden;
 }
 
