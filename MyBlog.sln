@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBolg.Swagger", "src\MyBol
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBolg.ToolKits", "src\MyBolg.ToolKits\MyBolg.ToolKits.csproj", "{96DDE297-B085-4BFB-A9A2-37832C6BD579}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorBlog", "src\BlazorBlog\BlazorBlog.csproj", "{B55A2B13-00EB-4B1E-8A3D-A867635A5981}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBlog", "src\BlazorBlog\BlazorBlog.csproj", "{B55A2B13-00EB-4B1E-8A3D-A867635A5981}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

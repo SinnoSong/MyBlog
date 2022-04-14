@@ -1,0 +1,12 @@
+﻿@page "/posts/"
+@page "/posts/{page:int}"
+
+<Loading />
+
+@code {
+    /// <summary>
+    /// 当前页码
+    /// </summary>
+    [Parameter]
+    public int? page { get; set; }
+}

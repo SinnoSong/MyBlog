@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\header.jfif" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="wwwroot\images\header.jfif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
